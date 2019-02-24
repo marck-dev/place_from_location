@@ -1,6 +1,6 @@
 import json
 import requests
-from LatLong import LatLong
+from lat_long import LatLong
 
 class PlacePetition:
     city = None
@@ -27,7 +27,7 @@ class PlacePetition:
                 raise ValueError(data["error"])
             if "politics" in data.keys():
                 locations = data["politics"]
-                if locations != "null": # if have samething in locations:
+                if locations is not None and locations != "null": # if have samething in locations:
                     for l in locations:
                         if "country" == l["friendly_type"]:
                             self.country = l["name"]
